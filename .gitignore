@@ -1,0 +1,33 @@
+# Secrets & local config
+.env
+.env.*
+!.env.example
+config/watchlist.yaml
+
+# Runtime
+logs/
+*.log
+heartbeat.json
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.eggs/
+dist/
+build/
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# OS / editor
+.DS_Store
+.idea/
+.vscode/
+*.swp
+*~

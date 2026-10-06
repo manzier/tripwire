@@ -1,0 +1,39 @@
+# Tripwire watchlist example
+# Copy to config/watchlist.yaml and edit. The real file is gitignored.
+#
+# Rules (any combination per symbol):
+#   stop_below: price — alert when last <= price
+#   target_above: price — alert when last >= price
+#   pct_move: percent — |% change| within window_seconds / within_seconds
+#   volume_spike: multiple — recent window volume vs baseline (multiple of X)
+# Optional per-rule or per-symbol: cooldown_seconds
+# Optional feed: auto | coinbase | kraken | finnhub
+
+default_cooldown_seconds: 60
+
+symbols:
+  - symbol: BTC-USD
+    feed: coinbase
+    rules:
+      - stop_below: 50000
+        cooldown_seconds: 120
+      - target_above: 200000
+      - pct_move: 2.0
+        within_seconds: 300
+        cooldown_seconds: 60
+
+  - symbol: ETH-USD
+    feed: auto
+    # shorthand form also works:
+    stop_below: 1000
+    target_above: 10000
+    cooldown_seconds: 90
+
+  - symbol: AAPL
+    feed: finnhub   # requires FINNHUB_API_KEY
+    rules:
+      - pct_move: 1.5
+        window_seconds: 120
+      - volume_spike: 3.0
+        window_seconds: 60
+        baseline_seconds: 300

@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "tripwire"
+version = "0.1.0"
+description = "Always-on market monitor that fires alerts when price conditions trip. Never places trades."
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.11"
+authors = [{ name = "manzier" }]
+dependencies = [
+    "websockets==17.2",
+    "PyYAML==6.0.3",
+    "aiohttp==3.14.4",
+]
+
+[project.optional-dependencies]
+dev = ["pytest==9.1.1"]
+
+[project.scripts]
+tripwire = "tripwire.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["tripwire*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

@@ -1,0 +1,18 @@
+[Unit]
+Description=Tripwire market monitor (alerts only — never places trades)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=/opt/tripwire
+EnvironmentFile=-/opt/tripwire/.env
+ExecStart=/opt/tripwire/.venv/bin/python -m tripwire run --config /opt/tripwire/config/watchlist.yaml
+Restart=always
+RestartSec=5
+# Hardening (adjust User= as needed)
+NoNewPrivileges=true
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target
